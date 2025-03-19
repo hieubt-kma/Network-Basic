@@ -4,8 +4,12 @@
 - [x]  Switching
 - [x]  Routing
 - [x]  Các giao thức trong mạng Internet
-- [ ]  NAT
-- [ ]  Firewall
+- [x]  NAT
+- [x]  Firewall
+- [x]  Cài đặt hệ điều hành Ubuntu 20.04 trên VMware
+- [x]  Tìm hiểu network trong VMware
+- [x]  Cấu hình ip tĩnh trong ubuntu 20.04
+- [ ]  
 
 # Mô hình OSI, TCP/IP
 
@@ -78,26 +82,239 @@
 
 # Các giao thức mạng trong internet
 
-- Application Layer
-    - **HTTP/HTTPS** – Giao thức truyền tải siêu văn bản (HyperText Transfer Protocol)
-    - **FTP/SFTP** – Giao thức truyền tập tin (File Transfer Protocol)
-    - **SMTP/POP3/IMAP** – Giao thức email
-    - **DNS** – Hệ thống phân giải tên miền
-    - SSH - Kết nối an toàn từ xa
-- Transport Layer
-    - **TCP** – Giao thức điều khiển truyền vận (Transmission Control Protocol)
-    - **UDP** – Giao thức gói dữ liệu không kết nối (User Datagram Protocol)
-- Network Layer
-    - **IP (IPv4/IPv6)** – Giao thức định tuyến địa chỉ trên Internet
-    - **ICMP** – Giao thức chẩn đoán mạng (ping, traceroute)
-    - **ARP** – Giao thức phân giải địa chỉ MAC
-- Data link Layer
-    - **Ethernet** – Giao thức phổ biến trong LAN
-    - **PPP** – Giao thức kết nối điểm-điểm (Point-to-Point Protocol)
-    - **Wi-Fi (802.11)** – Kết nối không dây
+- Hiện nay có 14 giao thức mạng phổ biển
+    - **Internet Protocol Suite (TCP/IP)**
+        - Bộ giao thức cơ bản của Internet.
+        - Gồm nhiều giao thức, trong đó TCP và IP là chính.
+    - **Protocol Stack**
+        - Tập hợp các lớp giao thức hoạt động cùng nhau để kết nối mạng.
+    - **TCP (Transmission Control Protocol)**
+        - Cung cấp kết nối dữ liệu đáng tin cậy.
+        - Gửi dữ liệu theo thứ tự, kiểm tra lỗi.
+        - Ứng dụng: Web, email, truyền file.
+    - **IP (Internet Protocol)**
+        - Định tuyến và chuyển tiếp dữ liệu qua mạng.
+        - Giúp kết nối các thiết bị trên Internet.
+    - **HTTP (Hypertext Transfer Protocol)**
+        - Giao thức truyền tải dữ liệu cho World Wide Web.
+        - Cổng: 80 (HTTP) và 443 (HTTPS – bảo mật).
+    - **FTP (File Transfer Protocol)**
+        - Dùng để truyền file giữa các máy tính.
+        - Cổng: 20/21.
+    - **SSH (Secured Shell)**
+        - Quản lý thiết bị mạng qua dòng lệnh một cách an toàn.
+        - Thay thế Telnet do bảo mật cao hơn.
+        - Cổng: 22.
+    - **Telnet**
+        - Quản lý thiết bị mạng qua dòng lệnh.
+        - Không bảo mật.
+        - Cổng: 23.
+    - **SMTP (Simple Mail Transfer Protocol)**
+        - Chuyển email giữa các mail server và từ người dùng đến hệ thống mail.
+        - Cổng: 25; SMTPS bảo mật qua cổng 465 (không tiêu chuẩn).
+    - **DNS (Domain Name System)**
+        - Chuyển đổi tên miền thành địa chỉ IP.
+        - Cổng: 53.
+    - **POP3 (Post Office Protocol version 3)**
+        - Lấy mail từ máy chủ và xóa sau khi tải về.
+        - Cổng: 110; bảo mật qua cổng 995.
+    - **IMAP (Internet Message Access Protocol)**
+        - Lấy mail từ máy chủ mà không xóa dữ liệu.
+        - Cổng: 143; bảo mật qua cổng 993.
+    - **SNMP (Simple Network Management Protocol)**
+        - Quản lý, giám sát và cấu hình thiết bị mạng.
+        - Hỗ trợ thông báo (trap) khi có sự kiện.
+        - Cổng: 161/162.
+    - **HTTPS (HTTP over SSL/TLS)**
+        - Phiên bản bảo mật của HTTP, sử dụng SSL/TLS.
+        - Cổng: 443.
 - Active Recall
-    - **HTTP và HTTPS khác nhau như thế nào? Tại sao HTTPS lại bảo mật hơn?**
-    - **So sánh TCP và UDP: Chúng khác nhau ra sao về cách truyền dữ liệu và ứng dụng thực tế?**
-    - **DNS hoạt động như thế nào trong việc phân giải tên miền thành địa chỉ IP?**
-    - **ICMP được sử dụng trong những công cụ nào để chẩn đoán mạng?**
-    - **Ethernet, PPP và Wi-Fi (802.11) có vai trò gì trong lớp Liên kết Dữ liệu?**
+    - Hãy giải thích vai trò của TCP trong Internet Protocol Suite và vì sao nó được coi là giao thức cốt lõi để truyền dữ liệu đáng tin cậy?
+    - So sánh chức năng của TCP và IP trong việc đảm bảo truyền tải dữ liệu qua mạng Internet.
+    - HTTP và HTTPS khác nhau như thế nào về mặt bảo mật, và cổng mặc định của chúng là gì?
+    - Khi nhận email, bạn sẽ gặp gì khi sử dụng POP3 so với IMAP?
+    - Tại sao SSH lại được ưu tiên sử dụng hơn Telnet trong quản lý thiết bị mạng, và cổng mặc định của SSH là gì?
+
+# NAT
+
+- NAT là “mạng ảo”
+    - Trong môi trường máy ảo sử dụng mạng NAT, mỗi máy ảo được cấp một địa chỉ IP riêng (ex: 10.0.0.99) do người dùng chỉnh sửa.
+- Chuyển đổi IP khi truyền ra ngoài Internet
+    - Khi máy ảo giao tiếp với bên ngoài, địa chỉ IP nội bộ sẽ được chuyển thành địa chỉ IP của mạng vật lý (WIFI) để truyền dữ liệu lên Internet.
+- Cấu hình NAT trong máy ảo
+    - Cấu hình mạng NAT sẽ có một gateway cố định (.2) và DHCP là địa chỉ cấp phát từ 1 đến 254.
+- Lợi ích
+    - NAT không chỉ giúp ẩn địa chỉ IP nội bộ, nó còn tạo thêm lớp bảo mật, mà còn có phép tùy chỉnh cấu hình mạng theo yêu cầu của người dùng.
+- Active Recall
+    - NAT là “mạng ảo” nghĩa là gì trong môi trường máy ảo?
+    - Khi máy ảo giao tiếp ra ngoài Internet, địa chỉ IP nội bộ của nó được chuyển đổi thành địa chỉ nào?
+    - Trong cấu hình NAT của máy ảo, gateway cố định thường được đặt ở địa chỉ nào?
+    - DHCP trong cấu hình NAT cấp phát địa chỉ từ bao nhiêu đến bao nhiêu?
+    - Những lợi ích chính của NAT là gì?
+
+# Firewall
+
+- Firewall - Tường lửa
+    - Kiểm soát luồng thong tin giữa các mạng.
+- Chức năng
+    - Phát hiện, ngăn chặn truy cập trái phép.
+- Mục đích
+    - Đảm bảo an toàn thông tin và bảo vệ hệ thống.
+- Active Recall
+    - Firewall có chức năng gì trong hệ thống mạng?
+    - Firewall giúp kiểm soát luồng thông tin giữa những gì?
+    - Tại sao firewall quan trọng đối với an toàn thông tin?
+    - Firewall có thể phát hiện và ngăn chặn điều gì?
+    - Mục tiêu chính của firewall trong network basic là gì?
+
+# Cài đặt hệ điều hành Ubuntu 20.04 trên VMware
+
+- Bước 1
+    - Cài đặt phiên bản server. [Tải Ubuntu Server tại đây](https://ubuntu.com/download/server)
+    
+    ![image.png](image.png)
+    
+- Bước 2
+    - Mở VMware, chọn **Create a New Virtual Machine** để khởi tạo máy ảo Ubuntu.
+    
+    ![image.png](image%201.png)
+    
+    - Nhấn **Next** để tiếp tục.
+    - Chọn file cấu hình vừa tải
+        
+        ![image.png](image%202.png)
+        
+    - Chọn file cấu hình xong tiếp tục nhấn “next”.
+- Bước 3
+    - Khởi động máy ảo và bắt đầu cài đặt Ubuntu Server.
+        
+        ![image.png](image%203.png)
+        
+    - Click chuột vào mũi tên rồi nhấn “enter”.
+        
+        ![image.png](image%204.png)
+        
+    - Tiếp theo là cài đặt ngôn ngữ, nhấn “enter” để tiếp tục
+        
+        ![Screenshot 2025-03-17 222537.png](1e904468-2f89-48fc-8557-7a19ad89ade7.png)
+        
+    - Bỏ qua quá trình cập nhật cài đặt
+        
+        ![Screenshot 2025-03-17 222546.png](Screenshot_2025-03-17_222546.png)
+        
+    - sử dụng mũi tên xuống nhấn **Continue without updating** (Tiếp tục mà không cần cập nhật). rồi “enter”.
+    - Chọn bố cục phím
+        
+        ![Screenshot 2025-03-17 222559.png](Screenshot_2025-03-17_222559.png)
+        
+    - Cấu hình giao diện mạng.
+        
+        ![Screenshot 2025-03-17 222608.png](Screenshot_2025-03-17_222608.png)
+        
+    - Cài **Định cấu hình chi tiết proxy để kết nối với Internet.** Chọn **Done** rồi nhấn **Enter.**
+        
+        ![image.png](image%205.png)
+        
+    - **Định cấu hình Ubuntu Archive Mirror.** Chọn **Done** rồi nhấn **Enter.**
+        
+        ![image.png](image%206.png)
+        
+    - **Chọn cấu hình lưu trữ.** Chọn **Done** rồi nhấn **Ente**
+        
+        ![image.png](image%207.png)
+        
+    - **Định cấu hình hồ sơ của bạn**
+        
+        ![image.png](image%208.png)
+        
+    - **Điền các thông tin để đăng nhập server. Sau đó** Chọn **Done** rồi nhấn **Enter.**
+        
+        ![Screenshot 2025-03-17 222855.png](Screenshot_2025-03-17_222855.png)
+        
+    - **Nhấn “Reboot” để hoàn tất cả đặt để máy tự động chạy.**
+- Bước 4
+    - Đăng nhập
+        
+        ![image.png](image%209.png)
+        
+    - Sau khi đăng nhập thì cập nhật hệ thống.
+    
+    ```bash
+    sudo apt update && sudo apt upgrade
+    ```
+    
+
+# Tìm hiểu network trong VMware
+
+- Bridged
+    - Máy ảo dùng chung mạng với máy thật.
+    - Có địa chỉ IP trong cùng subnet với máy thật.
+- Host - Only
+    - Máy ảo chỉ có thể giao tiếp với máy thật và các máy ảo khác trong cùng host.
+    - Không có kết nối Internet.
+    - Đây là mạng chỉ dùng trong nội bộ.
+- NAT
+    - Máy ảo kết nối mạng qua máy thật.
+    - Máy ảo không trực tiếp nhận từ IP ngoài, mà dùng Ip riêng (do mình đặt).
+    - Không bị phát hiện khi truy cập mạng.
+- Custom Network (hay dùng VMmet8)
+    - Cho phép cấu hình nâng cao với VMware Virtual Network Editor.
+    - Có thể tạo mạng riêng theo yêu cầu, thêm DHCP, NAT, hoặc điều chỉnh subnet.
+- Active Recall
+    - **Bridged Network hoạt động như thế nào và tại sao máy ảo có thể nhận IP trong cùng subnet với máy thật?**
+    - **Sự khác biệt chính giữa Host-Only và NAT là gì?**
+    - **Tại sao máy ảo sử dụng NAT không bị phát hiện khi truy cập mạng?**
+    - **Custom Network trong VMware cho phép điều chỉnh những yếu tố nào?**
+    - **Khi nào nên sử dụng Host-Only thay vì Bridged hoặc NAT?**
+
+# Cấu hình IP tĩnh trong ubuntu 20.04
+
+- Bước 1: Xem cấu hình mạng hiện tại
+    
+    ```bash
+    ip a
+    ```
+    
+    ![image.png](image%2010.png)
+    
+    - Hiện tại card mạng là `ens33`
+- Bước 2:  Chỉnh sửa file cấu hình mạng
+    - Xem tên file cấu hình
+        
+        ```bash
+        ls /etc/netplan/
+        ```
+        
+    - Hiện tại, file có tên dạng `50-cloud-init.yaml`
+    - Mở file cấu hình Netplan để chỉnh sửa
+    
+    ```bash
+    sudo nano /etc/netplan/50-cloud-init.yaml
+    ```
+    
+    ```bash
+    network:
+        ethernets:
+            ens33: 
+    	          dhcp4: false
+    	          addresses:
+    	            - 10.0.0.86/24
+    	          gateway4: 10.0.0.2
+    	          nameservers:
+    	            addresses:
+    	             - 8.8.8.8
+    	             - 8.8.4.4
+    	  version: 2  
+    ```
+    
+    - Sau khi chỉnh sửa file trong `nano`, nhấn: **`Ctrl + X` → `Y` → `Enter`**
+- Bước 3: Áp dụng thay đổi và kiểm tra lại IP
+    
+    ```bash
+    sudo netplan apply
+    ip a
+    ```
+    
+- Bước 4: `ping 8.8.8.8` để kiểm tra mạng có hoạt động không.
+    
+    ![image.png](image%2011.png)
